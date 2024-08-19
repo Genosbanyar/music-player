@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Player</title>
+    <script
+      src="https://kit.fontawesome.com/225a355f8f.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav">
+        <p class="count">
+          <span id="current-id"></span> / <span id="total-id"></span>
+        </p>
+        <div id="menu">
+          <i class="fa-solid fa-bars"></i><i class="fa-solid fa-xmark"></i>
+        </div>
+      </div>
+      <div id="minu-list">
+        <!-- <div class="one">
+          <span>TItle music</span>
+          <i class="fa fa-play"></i>
+          <i class="fa fa-pause"></i>
+        </div>
+        <div class="one">
+          <span>TItle music</span>
+          <i class="fa fa-play"></i>
+          <i class="fa fa-pause"></i>
+        </div>
+        <div class="one">
+          <span>TItle music</span>
+          <i class="fa fa-play"></i>
+          <i class="fa fa-pause"></i>
+        </div> -->
+      </div>
+      <div class="content">
+        <h1 class="title">Title</h1>
+        <span class="singer">SomeOne</span>
+      </div>
+      <img src="" class="poster" />
+      <div class="duration-time">00 : 00 / 00 : 00</div>
+      <input type="range" min="0" max="100" id="progress" />
+      <div class="button-container">
+        <i class="fa fa-backward"></i>
+        <i class="fa fa-play"></i>
+        <i class="fa fa-pause"></i>
+        <i class="fa fa-forward"></i>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
