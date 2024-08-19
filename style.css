@@ -94,4 +94,6 @@ i {
 #progress {
   margin: 20px 0 0 0;
   cursor: pointer;
+  width: 100%;
+  color: #f469a9;
 }

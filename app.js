@@ -58,7 +58,7 @@ for (let i = 0; i < musicList.length; i++) {
   totalId.textContent = musicList.length;
 }
 
-let index = 1;
+let index = 0;
 let isPlaying = false;
 
 pauseButton.addEventListener("click", () => {
@@ -85,7 +85,7 @@ const loadTrack = (index) => {
   cover.src = musicList[index].poster;
   audioTag.src = musicList[index].songId;
   audioTag.play();
-  //   durationTag.textContent = ;
+  setInterval(updateProgressBar, 1000);
   currentId.textContent = index + 1;
 };
 
@@ -113,5 +113,46 @@ const totalMinuteAndSecond = (totalTime) => {
 playButton.addEventListener("click", () => {
   isPlaying = true;
   playAndPauseButton();
+  let currentTimeSong = Math.floor(audioTag.currentTime);
+  if (currentTimeSong === 0) {
+    loadTrack(index);
+  } else {
+    audioTag.play();
+  }
+});
+
+const nextSong = () => {
+  isPlaying = true;
+  index += 1;
+  if (index === 5) {
+    index = 0;
+  }
+  playAndPauseButton();
+  loadTrack(index);
+};
+
+nextButton.addEventListener("click", () => {
+  nextSong();
+});
+
+backButton.addEventListener("click", () => {
+  isPlaying = true;
+  index -= 1;
+  if (index === -1) {
+    index = musicList.length - 1;
+  }
+  playAndPauseButton();
   loadTrack(index);
 });
+
+const updateProgressBar = () => {
+  progressBar.value = (100 / audioTag.duration) * audioTag.currentTime;
+  if (audioTag.ended) {
+    nextSong();
+  }
+};
+
+progressBar.addEventListener("change", () => {
+  audioTag.currentTime = progressBar.value * (audioTag.duration / 100);
+});
+loadTrack(index);
