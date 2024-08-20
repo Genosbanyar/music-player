@@ -5,7 +5,12 @@
 }
 
 body {
-  background-color: #071e3d;
+  background: linear-gradient(
+    to right,
+    rgb(18, 194, 233),
+    rgb(196, 113, 237),
+    rgb(246, 79, 89)
+  );
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   height: 100vh;
   display: flex;
@@ -16,7 +21,7 @@ body {
 .container {
   height: 500px;
   width: 400px;
-  background-color: #775ada;
+  background: linear-gradient(to right, rgb(78, 84, 200), rgb(143, 148, 251));
   border-radius: 10px;
   overflow: hidden;
   padding: 10px;
