@@ -10,7 +10,8 @@ const playButton = document.querySelector(".fa-play");
 const nextButton = document.querySelector(".fa-forward");
 const pauseButton = document.getElementsByClassName("fa-pause")[0];
 const menuIcon = document.querySelector(".fa-bars");
-const cancelIcon = document.querySelector(".fa-xmarks");
+const cancelIcon = document.querySelector(".fa-xmark");
+const navList = document.getElementById("menu-list");
 
 const musicList = [
   {
@@ -50,14 +51,6 @@ const musicList = [
   },
 ];
 
-for (let i = 0; i < musicList.length; i++) {
-  let musicTitle = musicList[i].title;
-  let musicSrc = musicList[i].songId;
-  let coverPoster = musicList[i].poster;
-  let currentId = musicList[i].id;
-  totalId.textContent = musicList.length;
-}
-
 let index = 0;
 let isPlaying = false;
 
@@ -77,6 +70,50 @@ const playAndPauseButton = () => {
   }
 };
 
+for (let i = 0; i < musicList.length; i++) {
+  let musicTitle = musicList[i].title;
+  let musicSinger = musicList[i].singer;
+  const divOneElement = document.createElement("div");
+  divOneElement.classList.add("one");
+  const divTwoElement = document.createElement("div");
+  divTwoElement.classList.add("music-info");
+  const pTag = document.createElement("p");
+  pTag.classList.add("music-title");
+  const spanTag = document.createElement("span");
+  spanTag.classList.add("singers");
+  const playTag = document.createElement("i");
+  playTag.classList.add("fa", "fa-play");
+  playTag.addEventListener("click", () => {
+    index = i;
+    isPlaying = true;
+    playAndPauseButton();
+
+    // Array.from(navList.children).forEach((div) => {
+    //   div.lastElementChild.classList.remove("fa fa-pause");
+    //   div.lastElementChild.classList.remove("fa fa-play");
+    // });
+
+    playTag.style.display = "none";
+    pauseTag.style.display = "inline";
+    loadTrack(index);
+  });
+  const pauseTag = document.createElement("i");
+  pauseTag.classList.add("fa", "fa-pause");
+  pauseTag.addEventListener("click", () => {
+    isPlaying = false;
+    playTag.style.display = "inline";
+    pauseTag.style.display = "none";
+    playAndPauseButton();
+    audioTag.pause();
+  });
+  pTag.append(musicTitle);
+  spanTag.append(musicSinger);
+  divTwoElement.append(pTag, spanTag);
+  divOneElement.append(divTwoElement, playTag, pauseTag);
+  navList.append(divOneElement);
+  totalId.textContent = musicList.length;
+}
+
 //load Function
 const audioTag = document.createElement("audio");
 const loadTrack = (index) => {
@@ -88,6 +125,18 @@ const loadTrack = (index) => {
   setInterval(updateProgressBar, 1000);
   currentId.textContent = index + 1;
 };
+
+menuIcon.addEventListener("click", () => {
+  navList.classList.add("nav-active");
+  menuIcon.style.display = "none";
+  cancelIcon.style.display = "inline";
+});
+
+cancelIcon.addEventListener("click", () => {
+  navList.classList.remove("nav-active");
+  menuIcon.style.display = "inline";
+  cancelIcon.style.display = "none";
+});
 
 let createMinuteAndSecond = "00 : 00";
 audioTag.addEventListener("loadeddata", () => {

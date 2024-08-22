@@ -24,6 +24,7 @@ body {
   background: linear-gradient(to right, rgb(78, 84, 200), rgb(143, 148, 251));
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
   padding: 10px;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
@@ -78,6 +79,7 @@ i {
   color: #ff304f;
   cursor: pointer;
   font-size: 19px;
+  transition: 1s;
 }
 
 .duration-time {
@@ -93,7 +95,12 @@ i {
 }
 
 .fa-xmark {
+  position: absolute;
+  right: 4%;
+  color: rgb(67, 93, 147);
+  top: 2%;
   display: none;
+  z-index: 1;
 }
 
 #progress {
@@ -101,4 +108,39 @@ i {
   cursor: pointer;
   width: 100%;
   color: #f469a9;
+}
+
+#menu-list {
+  background-color: rgba(200, 82, 167, 0.849);
+  height: 500px;
+  width: 400px;
+  position: absolute;
+  padding: 20px 15px;
+  top: 7%;
+  right: -500px;
+  z-index: 1;
+  overflow: scroll;
+  transition: 0.4s linear;
+}
+
+.nav-active {
+  right: 0 !important;
+}
+
+.one {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px;
+  border-bottom: 1px solid black;
+}
+
+.music-title {
+  font-size: 20px;
+  color: #002651;
+  user-select: none;
+}
+
+.singers {
+  user-select: none;
+  color: #40514e;
 }
