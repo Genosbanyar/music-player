@@ -79,23 +79,22 @@ for (let i = 0; i < musicList.length; i++) {
   divTwoElement.classList.add("music-info");
   const pTag = document.createElement("p");
   pTag.classList.add("music-title");
-  const spanTag = document.createElement("span");
+  let spanTag = document.createElement("span");
   spanTag.classList.add("singers");
   const playTag = document.createElement("i");
   playTag.classList.add("fa", "fa-play");
+  //play single song
   playTag.addEventListener("click", () => {
     index = i;
     isPlaying = true;
     playAndPauseButton();
-
-    // Array.from(navList.children).forEach((div) => {
-    //   div.lastElementChild.classList.remove("fa fa-pause");
-    //   div.lastElementChild.classList.remove("fa fa-play");
-    // });
-
+    if (Math.floor(audioTag.currentTime) === 0) {
+      loadTrack(index);
+    } else {
+      audioTag.play();
+    }
     playTag.style.display = "none";
     pauseTag.style.display = "inline";
-    loadTrack(index);
   });
   const pauseTag = document.createElement("i");
   pauseTag.classList.add("fa", "fa-pause");
